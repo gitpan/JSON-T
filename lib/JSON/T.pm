@@ -5,10 +5,10 @@ use common::sense;
 use overload '""' => \&to_string;
 
 use JE;
-use JSON;
+use JSON qw[];
 
 our $JSLIB;
-our $VERSION = '0.090_02';
+our $VERSION = '0.090_03';
 
 sub new
 {
@@ -62,7 +62,10 @@ sub parameters
 		{
 			$v = $v->[1];
 		}
-		$self->{'engine'}->eval("this.${k}")->set("$v");
+		$self->{'engine'}->eval("var $k;");
+		$self->{'engine'}->eval($k)->set(
+			JE::Object::String->new($self->{'engine'}, $v)
+			);
 	}
 }
 
@@ -70,10 +73,8 @@ sub transform
 {
 	my ($self, $input) = @_;
 	
-	if (ref $input)
-	{
-		$input = to_json($input);
-	}
+	$input = JSON::to_json($input)
+		if ref $input;
 	
 	my $name = $self->{'name'};
 	my $rv1  = $self->{'engine'}->eval("return_to_perl(JSON.transform($input, $name));");
@@ -83,9 +84,11 @@ sub transform
 
 sub transform_structure
 {
-	my ($self, $input) = @_;
+	my ($self, $input, $debug) = @_;
 	my $output = $self->transform($input);
-	return from_json($output);
+	eval 'use Test::More; Test::More::diag("\n${output}\n");'
+		if $debug;
+	return JSON::from_json($output);
 }
 *transform_document = \&transform_structure;
 
