@@ -1,32 +1,46 @@
-############################################################################
-## Changes #################################################################
-############################################################################
-
 JSON-T
 ======
 
 Created:      2010-07-29
-Home page:    <http://search.cpan.org/dist/JSON-T/>
+Home page:    <https://metacpan.org/release/JSON-T>
 Bug tracker:  <http://rt.cpan.org/Dist/Display.html?Queue=JSON-T>
 Maintainer:   Toby Inkster <mailto:tobyink@cpan.org>
 
-0.100 [2010-09-02]
+0.101  2011-12-05
+
+ - Constructor uses Class::Load to load a suitable subclass.
+ - Separate out the JE-specific stuff into JSON::T::JE.
+ - (Addition) Provide a DOES method.
+ - (Update) use Object::AUTHORITY
+ - (Documentation) Create a clear division between the
+   implementation-specific and more generic parts of the code. Document how
+   to make implementation subclasses.
+ - (Packaging) Module::Package::RDF
+ - (Update) use 5.010
+
+0.100  2010-09-02
+
  - Accept JSON::JOM as input to transformations.
 
-0.090_04 [2010-08-15]
+0.090_04  2010-08-15
+
  - Force stringification of return value of transform method. Pesky
    JE::String values!
 
-0.090_03 [2010-08-10]
+0.090_03  2010-08-10
+
  - Additional debugging info added to tests.
 
-0.090_02 [2010-08-02]
+0.090_02  2010-08-02
+
  - Switched from JavaScript::SpiderMonkey to JE - SpiderMonkey version is
    retained for those that want it.
 
-0.090_01 [2010-07-30]
+0.090_01  2010-07-30
+
  - (Bugfix) Non-JSON-string input for transform method was not being
    correctly converted to JSON.
 
-0.090_00 [2010-07-30]
+0.090_00  2010-07-30
+
 

@@ -1,35 +1,34 @@
-package JSON::T::SpiderMonkey;
+package JSON::T::JE;
 
 use 5.010;
 use common::sense;
 use utf8;
 
-use JavaScript::SpiderMonkey;
+use JE;
 
 use parent qw[JSON::T];
 
 BEGIN
 {
-	$JSON::T::SpiderMonkey::AUTHORITY = 'cpan:TOBYINK';
-	$JSON::T::SpiderMonkey::VERSION   = '0.101';
+	$JSON::T::JE::AUTHORITY = 'cpan:TOBYINK';
+	$JSON::T::JE::VERSION   = '0.101';
 }
 
 sub init
 {
 	my ($self, @args) = @_;
-
-	my $JS = $self->{engine} = JavaScript::SpiderMonkey->new();
 	
-	$JS->init;
-	$JS->function_set("return_to_perl", sub
+	my $JS = $self->{engine} = JE->new;
+	
+	$JS->new_function("return_to_perl", sub
 		{
 			$self->_accept_return_value(@_);
 		});
-	$JS->function_set("print_to_perl", sub
+	$JS->new_function("print_to_perl", sub
 		{
 			print @_;
 		});
-	
+
 	$self->SUPER::init(@args);
 }
 
@@ -48,7 +47,10 @@ sub parameters
 		{
 			$v = $v->[1];
 		}
-		$self->{'engine'}->property_by_path($k, "$v");
+		$self->{'engine'}->eval("var $k;");
+		$self->{'engine'}->eval($k)->set(
+			JE::Object::String->new($self->{'engine'}, $v)
+			);
 	}
 }
 
@@ -56,11 +58,11 @@ sub parameters
 
 =head1 NAME
 
-JSON::T::SpiderMonkey - transform JSON using JsonT and SpiderMonkey (libjs)
+JSON::T::JE - transform JSON using JsonT and JE
 
 =head1 DESCRIPTION
 
-This module uses L<JavaScript::SpiderMonkey> to provide JavaScript support.
+This module uses L<JE> to provide JavaScript support.
 
 Implements:
 
