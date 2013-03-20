@@ -2,14 +2,14 @@
 abstract: 'transform JSON using JsonT'
 author:
   - 'Stefan Goessner'
-  - 'Toby Inkster <tobyink@cpan.org>'
+  - 'Toby Inkster'
 build_requires:
-  ExtUtils::MakeMaker: 6.42
-  Test::More: 0.61
+  ExtUtils::MakeMaker: 6.59
 configure_requires:
-  ExtUtils::MakeMaker: 6.42
+  ExtUtils::MakeMaker: 6.59
 distribution_type: module
-generated_by: 'Module::Install version 1.02'
+dynamic_config: 0
+generated_by: 'Module::Install version 1.06'
 keywords:
   - ECMAScript
   - JSON
@@ -33,14 +33,12 @@ recommends:
 requires:
   Class::Load: 0
   JE: 0
-  JSON: 0
+  JSON: 2.00
   Object::AUTHORITY: 0
-  Scalar::Util: 0
-  common::sense: 0
   perl: 5.10.0
 resources:
   bugtracker: http://rt.cpan.org/Dist/Display.html?Queue=JSON-T
   homepage: https://metacpan.org/release/JSON-T
   license: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt
   repository: https://bitbucket.org/tobyink/p5-json-t
-version: 0.101
+version: 0.102

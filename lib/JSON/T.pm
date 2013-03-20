@@ -1,7 +1,8 @@
 package JSON::T;
 
 use 5.010;
-use common::sense;
+use strict;
+use warnings;
 use utf8;
 
 use Class::Load qw[];
@@ -14,7 +15,7 @@ use overload '""' => \&_to_string;
 BEGIN
 {
 	$JSON::T::AUTHORITY = 'cpan:TOBYINK';
-	$JSON::T::VERSION   = '0.101';
+	$JSON::T::VERSION   = '0.102';
 }
 
 our ($JSLIB, @Implementations);
@@ -33,11 +34,14 @@ BEGIN
 	push @Implementations, qw/JSON::T::JE JSON::T::SpiderMonkey/;
 }
 
-sub DOES
 {
-	my ($class, $role) = @_;
-	return $role if $role eq 'XML::Saxon::XSLT2';
-	return $class->SUPER::DOES($role);
+	no warnings 'redefine';
+	sub DOES
+	{
+		my ($class, $role) = @_;
+		return $role if $role eq 'XML::Saxon::XSLT2';
+		return $class->SUPER::DOES($role);
+	}
 }
 
 sub new
@@ -357,7 +361,7 @@ JsonT (version 0.9) to do the heavy lifting.
 
 Copyright 2006 Stefan Goessner.
 
-Copyright 2008-2011 Toby Inkster.
+Copyright 2008-2011, 2013 Toby Inkster.
 
 Licensed under the Lesser GPL:
 L<http://creativecommons.org/licenses/LGPL/2.1/>.

@@ -4,19 +4,23 @@ JSON-T
 Created:      2010-07-29
 Home page:    <https://metacpan.org/release/JSON-T>
 Bug tracker:  <http://rt.cpan.org/Dist/Display.html?Queue=JSON-T>
-Maintainer:   Toby Inkster <mailto:tobyink@cpan.org>
+Maintainer:   Toby Inkster
+
+0.102  2013-03-20
+
+ - (Update) no common::sense
 
 0.101  2011-12-05
 
- - Constructor uses Class::Load to load a suitable subclass.
- - Separate out the JE-specific stuff into JSON::T::JE.
  - (Addition) Provide a DOES method.
- - (Update) use Object::AUTHORITY
  - (Documentation) Create a clear division between the
    implementation-specific and more generic parts of the code. Document how
    to make implementation subclasses.
  - (Packaging) Module::Package::RDF
  - (Update) use 5.010
+ - (Update) use Object::AUTHORITY
+ - Constructor uses Class::Load to load a suitable subclass.
+ - Separate out the JE-specific stuff into JSON::T::JE.
 
 0.100  2010-09-02
 

@@ -1,17 +1,18 @@
 package JSON::T::SpiderMonkey;
 
 use 5.010;
-use common::sense;
+use strict;
+use warnings;
 use utf8;
 
 use JavaScript::SpiderMonkey;
 
-use parent qw[JSON::T];
+use base qw[JSON::T];
 
 BEGIN
 {
 	$JSON::T::SpiderMonkey::AUTHORITY = 'cpan:TOBYINK';
-	$JSON::T::SpiderMonkey::VERSION   = '0.101';
+	$JSON::T::SpiderMonkey::VERSION   = '0.102';
 }
 
 sub init
@@ -88,7 +89,7 @@ Toby Inkster E<lt>tobyink@cpan.orgE<gt>.
 
 =head1 COPYRIGHT AND LICENCE
 
-Copyright 2008-2011 Toby Inkster.
+Copyright 2008-2011, 2013 Toby Inkster.
 
 Licensed under the Lesser GPL:
 L<http://creativecommons.org/licenses/LGPL/2.1/>.
