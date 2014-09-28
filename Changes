@@ -6,6 +6,24 @@ Home page:    <https://metacpan.org/release/JSON-T>
 Bug tracker:  <http://rt.cpan.org/Dist/Display.html?Queue=JSON-T>
 Maintainer:   Toby Inkster (TOBYINK) <tobyink@cpan.org>
 
+0.104	2014-09-15
+
+ [ Documentation ]
+ - Copyright 2014.
+ - Update example; no longer use JSON::JOM which I withdrew from CPAN.
+
+ [ Packaging ]
+ - Use dynamic config so that if JavaScript::SpiderMonkey is installed, JE
+   is not a dependency.
+ - Use dynamic config to depend on Cpanel::JSON::XS or JSON::PP, rather
+   than JSON.pm.
+
+ [ Other ]
+ - Assign to @ISA instead of using base.pm.
+ - Lots of tidying up.
+ - Updated: Drop dependency on Object::AUTHORITY.
+ - Use Module::Runtime instead of Class::Load.
+
 0.103	2014-09-11
 
  [ Packaging ]

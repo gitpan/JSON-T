@@ -6,8 +6,8 @@ my $EUMM = eval( $ExtUtils::MakeMaker::VERSION );
 my $meta = {
   "abstract"       => "transform JSON using JsonT",
   "author"         => ["Toby Inkster (TOBYINK) <tobyink\@cpan.org>"],
-  "dynamic_config" => 0,
-  "generated_by"   => "Moose::Meta::Class::__ANON__::SERIAL::11 version , CPAN::Meta::Converter version 2.140640",
+  "dynamic_config" => 1,
+  "generated_by"   => "Dist::Inkt::Profile::TOBYINK version 0.023, CPAN::Meta::Converter version 2.140640",
   "keywords"       => ["ECMAScript", "JSON", "JavaScript", "JsonT", "Transform"],
   "license"        => ["lgpl_2_1"],
   "meta-spec"      => {
@@ -19,14 +19,15 @@ my $meta = {
   "prereqs"        => {
                         configure => { requires => { "ExtUtils::MakeMaker" => 6.17 } },
                         runtime   => {
-                                       recommends => { "JavaScript::SpiderMonkey" => 0 },
-                                       requires   => { "Class::Load" => 0, "JE" => 0, "JSON" => "2.00", "Object::AUTHORITY" => 0 },
+                                       recommends => { "Cpanel::JSON::XS" => 0, "JE" => 0 },
+                                       requires   => { "Module::Runtime" => 0, "perl" => "5.010000" },
+                                       suggests   => { "JavaScript::SpiderMonkey" => 0, "JSON::PP" => 0 },
                                      },
                       },
   "provides"       => {
-                        "JSON::T" => { file => "lib/JSON/T.pm", version => 0.103 },
-                        "JSON::T::JE" => { file => "lib/JSON/T/JE.pm", version => 0.103 },
-                        "JSON::T::SpiderMonkey" => { file => "lib/JSON/T/SpiderMonkey.pm", version => 0.103 },
+                        "JSON::T" => { file => "lib/JSON/T.pm", version => 0.104 },
+                        "JSON::T::JE" => { file => "lib/JSON/T/JE.pm", version => 0.104 },
+                        "JSON::T::SpiderMonkey" => { file => "lib/JSON/T/SpiderMonkey.pm", version => 0.104 },
                       },
   "release_status" => "stable",
   "resources"      => {
@@ -38,13 +39,39 @@ my $meta = {
                                           url  => "git://github.com/tobyink/p5-json-t.git",
                                           web  => "https://github.com/tobyink/p5-json-t",
                                         },
-                        X_identifier => "http://purl.org/NET/cpan-uri/dist/JSON-T/project",
+                        x_identifier => "http://purl.org/NET/cpan-uri/dist/JSON-T/project",
                       },
-  "version"        => 0.103,
+  "version"        => 0.104,
   "x_contributors" => ["Stefan Goessner"],
 };
 
 my %dynamic_config;
+do {
+if (eval { require JavaScript::SpiderMonkey })
+{
+	print "You have JavaScript::SpiderMonkey... awesome!\n";
+}
+else
+{
+	print "You are missing JavaScript::SpiderMonkey... but fear not!\n";
+	print "We'll add a pure Perl Javascript implementation (JE) to your deps.\n";
+	
+	$meta->{prereqs}{runtime}{requires}{'JE'} = 0;
+}
+
+if (eval { require Cpanel::JSON::XS })
+{
+	print "You have Cpanel::JSON::XS... awesome!\n";
+}
+else
+{
+	print "You are missing Cpanel::JSON::XS... but fear not!\n";
+	print "We'll add a pure Perl JSON implementation (JSON::PP) to your deps.\n";
+	
+	$meta->{prereqs}{runtime}{requires}{'JSON::PP'} = 0;
+}
+
+};
 
 my %WriteMakefileArgs = (
 	ABSTRACT   => $meta->{abstract},

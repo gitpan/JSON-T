@@ -3,6 +3,15 @@ Upstream-Name: JSON-T
 Upstream-Contact: Toby Inkster (TOBYINK) <tobyink@cpan.org>
 Source: https://metacpan.org/release/JSON-T
 
+Files: CONTRIBUTING
+ INSTALL
+ LICENSE
+ Makefile.PL
+ TODO
+ examples/example1.pl
+Copyright: Unknown
+License: Unknown
+
 Files: Changes
  META.json
  META.yml
@@ -11,35 +20,26 @@ Files: Changes
 Copyright: Copyright 2014 Toby Inkster.
 License: LGPL-2.1
 
-Files: CONTRIBUTING
- INSTALL
- LICENSE
- TODO
- examples/example1.pl
-Copyright: Unknown
-License: Unknown
-
-Files: lib/JSON/T/JE.pm
- lib/JSON/T/SpiderMonkey.pm
- t/01basic.t
-Copyright: Copyright 2008-2011, 2013 Toby Inkster.
-License: LGPL-2.1
-
 Files: COPYRIGHT
  CREDITS
  SIGNATURE
 Copyright: None
 License: public-domain
 
+Files: lib/JSON/T/JE.pm
+ lib/JSON/T/SpiderMonkey.pm
+Copyright: Copyright 2008-2011, 2013-2014 Toby Inkster.
+License: LGPL-2.1
+
 Files: README
  lib/JSON/T.pm
 Copyright: Copyright 2006 Stefan Goessner.
- Copyright 2008-2011, 2013 Toby Inkster.
+ Copyright 2008-2011, 2013-2014 Toby Inkster.
 License: LGPL-2.1
 
-Files: Makefile.PL
-Copyright: Copyright 2013 Toby Inkster.
-License: GPL-1.0+ or Artistic-1.0
+Files: t/01basic.t
+Copyright: Copyright 2008-2011, 2013 Toby Inkster.
+License: LGPL-2.1
 
 License: LGPL-2.1
  This software is Copyright (c) 2014 by Toby Inkster.
@@ -47,17 +47,3 @@ License: LGPL-2.1
  This is free software, licensed under:
  
    The GNU Lesser General Public License, Version 2.1, February 1999
-
-License: Artistic-1.0
- This software is Copyright (c) 2014 by the copyright holder(s).
- 
- This is free software, licensed under:
- 
-   The Artistic License 1.0
-
-License: GPL-1.0
- This software is Copyright (c) 2014 by the copyright holder(s).
- 
- This is free software, licensed under:
- 
-   The GNU General Public License, Version 1, February 1989
